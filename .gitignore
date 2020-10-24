@@ -1,3 +1,4 @@
 cron/script_tmp
 cron/logs
 cron/.env
+.ssh
