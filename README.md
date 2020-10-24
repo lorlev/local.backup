@@ -3,8 +3,12 @@ Linux local backup script
 
 ## Backup User
 ```shell
-useradd backup.manager
+useradd backup.manager -d /datastore/local.backup
 passwd backup.manager
+chown backup.manager:backup.manager mysql
+chown backup.manager:backup.manager web
+mkdir /datastore/local.backup/.ssh
+chown backup.manager:backup.manager .ssh
 ```
 
 ## Unachive
@@ -29,6 +33,7 @@ gpg db_name-11-Jun-2020_23-19-03.sql
 
 #Tmp watch
 */60 * * * *    /usr/sbin/tmpwatch -mc 14d /datastore/local.backup/mysql
+*/60 * * * *    /usr/sbin/tmpwatch -mc 14d /datastore/local.backup/cron/logs
 ```
 
 ## Install mysqldump
